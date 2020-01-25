@@ -1,0 +1,8 @@
+{{ gitlab_log_dir }}/pages/*.log
+{{ gitlab_log_dir }}/rails/*.log
+{{ gitlab_log_dir }}/shell/*.log
+{{ gitlab_log_dir }}/unicorn/*.log
+{{ gitlab_log_dir }}/workhorse/*.log {
+    create 0640 root root
+    su {{ gitlab_user_name }} {{ gitlab_group_name }}
+}

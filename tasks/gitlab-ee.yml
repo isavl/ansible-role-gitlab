@@ -1,0 +1,8 @@
+---
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+- name: "Install ee instantion packages"
+  package:
+    name: "{{ gitlab_ee_packages }}"
+    state: "present"
+  when: "gitlab_ee_packages is defined and gitlab_ee_packages is not none"

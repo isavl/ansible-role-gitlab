@@ -1,0 +1,8 @@
+---
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+- name: "Install ce instantion packages"
+  package:
+    name: "{{ gitlab_ce_packages }}"
+    state: "present"
+  when: "gitlab_ce_packages is defined and gitlab_ce_packages is not none"

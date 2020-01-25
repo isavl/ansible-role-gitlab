@@ -1,0 +1,132 @@
+---
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# Type of instance for installing.
+#
+# Options:
+#   ce - community edition (CE)
+#   ee - enterprise edition (EE)
+gitlab_edition: "ee"
+
+# Manage or not system user/group.
+gitlab_user_managed: true
+gitlab_group_managed: true
+
+# System user/group name.
+gitlab_user_name: "gitlab"
+gitlab_group_name: "gitlab"
+gitlab_registry_user_name: "gitlab-registry"
+gitlab_registry_group_name: "gitlab-registry"
+gitlab_www_user_name: "gitlab-www"
+gitlab_www_group_name: "gitlab-www"
+
+# System user/group id.
+gitlab_user_id: ~
+gitlab_group_id: ~
+gitlab_registry_user_id: ~
+gitlab_registry_group_id: ~
+gitlab_www_user_id: ~
+gitlab_www_group_id: ~
+
+# List of system user additional groups.
+gitlab_user_groups: []
+gitlab_registry_user_groups: []
+gitlab_www_user_groups: []
+
+# Directory for config files.
+gitlab_config_dir: "/etc/gitlab"
+
+# Directory for certificate and key files.
+gitlab_pki_dir: "/etc/pki/gitlab"
+
+# Directory for trusted certificate files.
+#
+# This is separate directory because genius from GitLab Inc think it is
+# very funny do not support default system pki.
+gitlab_trusted_cert_dir: "/etc/gitlab/trusted-certs"
+
+# Directory for processes pid and socket files.
+gitlab_run_dir: "/run/gitlab"
+
+# Directory for log files.
+gitlab_log_dir: "/var/log/gitlab"
+
+# Directory for data files.
+gitlab_data_dir: "/var/lib/gitlab"
+
+# Directory for omnibus gitlab data files.
+gitlab_omnibus_data_dir: "/var/opt/gitlab"
+
+# List of config file templates.
+#
+# Format:
+#   - name - name of file on target system (if not defined used src name)
+#     src  - path to config file template
+gitlab_config_files:
+
+  - src: "gitlab.rb.j2"
+
+# List of certificate and key files.
+#
+# Format:
+#   - name - name of file on target system (if not defined used src name)
+#     src  - path to certificate or key file
+gitlab_pki_files: []
+
+# List of trusted certificate files.
+#
+# Format:
+#   - name - name of file on target system (if not defined used src name)
+#     src  - path to certificate or key file
+gitlab_trusted_cert_files: []
+
+# Manage or not generation of logrotate config file.
+gitlab_logrotate_manage: false
+
+# Directory for logrotate dynamic config files.
+gitlab_logrotate_config_d_dir: "{{ logrotate_config_d_dir if logrotate_config_d_dir is defined else '/etc/logrotate.d' }}"
+
+# List of logrotate dynamic config file templates.
+#
+# Format:
+#   - name - name of file on target system (if not defined used src name)
+#     src  - path to config file template
+gitlab_logrotate_d_config_files:
+
+  - src: "gitlab.logrotate.j2"
+
+# Manage or not systemd services.
+gitlab_systemd_managed: true
+
+# Systemd service files.
+#
+# Format:
+#   - name - name of file on target system (if not defined used src name)
+#     src  - path to template file
+#     enabled - enable service on boot (disabled by default)
+#     started - starting service after setup (disabled by default)
+#     react - if true this service react on changes in config files (disabled by default)
+gitlab_systemd_service_files:
+
+  - src: "gitlab.service.j2"
+    enabled: true
+    started: true
+    react: true
+
+# Systemd timer files.
+#
+# Format:
+#   - name - name of file on target system (if not defined used src name)
+#     src  - path to template file
+#     enabled - enable service on boot (disabled by default)
+#     started - starting service after setup (disabled by default)
+gitlab_systemd_timer_files: []
+
+# List of tmpfiles.d config file templates.
+#
+# Format:
+#   - name - name of file on target system (if not defined used src name)
+#     src  - path to template file
+gitlab_tmpfiles_d_files:
+
+  - src: "gitlab.tmpfile.j2"

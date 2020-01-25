@@ -1,0 +1,19 @@
+---
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# Packages required to be installed.
+gitlab_packages:
+
+  - "libxcrypt-compat"
+
+# Packages required to be installed on ce instation.
+gitlab_ce_packages:
+
+  - "gitlab-ce"
+
+# Packages required to be installed on ee instation.
+gitlab_ee_packages:
+
+  - "gitlab-ee"
+
+gitlab_ctl_bin: "/opt/gitlab/bin/gitlab-ctl"

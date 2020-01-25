@@ -1,0 +1,17 @@
+[Unit]
+
+Description=GitLab daemons
+
+[Service]
+
+ExecStartPre={{ gitlab_ctl_bin }} reconfigure
+ExecStart={{ gitlab_ctl_bin }} start
+ExecReload={{ gitlab_ctl_bin }} restart
+
+Type=oneshot
+
+RemainAfterExit=yes
+
+[Install]
+
+WantedBy=multi-user.target
